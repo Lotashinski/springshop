@@ -1,6 +1,6 @@
 package com.github.lotashinski.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.github.lotashinski.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.dto.CategoryDataDto;
@@ -9,13 +9,13 @@ import com.github.lotashinski.dto.CategoryDto;
 
 public interface CategoryService {
 
-	Collection<? extends CategoryCollectionItemDto> findByCriteria(CategoryCriteriaDto criteria);
+	List<? extends CategoryCollectionItemDto> findByCriteria(CategoryCriteriaDto criteria);
 	
 	CategoryDto create(CategoryDataDto dto);
 	
 	CategoryDto read(Long id);
 	
-	CategoryDto update(Long id, CategoryDataDto category);
+	CategoryDto update(Long id, CategoryDataDto data);
 	
 	void delete(Long id);
 	

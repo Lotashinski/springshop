@@ -35,8 +35,8 @@ public class Product {
 	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "price", nullable = false, precision = 10, scale = 2)
-	private BigDecimal price;
+	@Column(name = "cost", nullable = false, precision = 10, scale = 2)
+	private BigDecimal cost;
 
 	@ManyToMany
 	@JoinTable(name = "product_category",

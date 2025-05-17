@@ -1,5 +1,7 @@
 package com.github.lotashinski.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -57,9 +59,13 @@ public class OrderItem {
 	@Column(name = "count", nullable = false)
 	private Integer count;
 	
+	@Column(name = "cost_of_one", nullable = false, precision = 10, scale = 2)
+	private BigDecimal costOfOne;
+	
 	OrderItem(Product product, Order order, int count) {
 		this.id = new OrderItemPk(product, order);
 		this.count = count;
+		this.costOfOne = product.getCost();
 	}
 	
 	public Product getProduct() {
