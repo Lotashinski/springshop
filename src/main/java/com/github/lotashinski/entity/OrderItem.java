@@ -24,8 +24,8 @@ import lombok.Setter;
 public class OrderItem {
 
 	@Embeddable
-	@NoArgsConstructor
-	@AllArgsConstructor
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PROTECTED)
 	@EqualsAndHashCode
 	@Getter
 	@Setter(AccessLevel.PROTECTED)
@@ -57,7 +57,7 @@ public class OrderItem {
 	@Column(name = "count", nullable = false)
 	private Integer count;
 	
-	public OrderItem(Product product, Order order, int count) {
+	OrderItem(Product product, Order order, int count) {
 		this.id = new OrderItemPk(product, order);
 		this.count = count;
 	}

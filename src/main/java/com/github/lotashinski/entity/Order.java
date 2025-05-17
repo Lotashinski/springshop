@@ -1,9 +1,8 @@
 package com.github.lotashinski.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -45,22 +44,15 @@ public class Order {
 	private Boolean isFinished;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id.order")
-	private List<OrderItem> items = new ArrayList<>();
+	@Setter(AccessLevel.PROTECTED)
+	private Set<OrderItem> items = new HashSet<>();
 	
 	public void putItem(Product product, int count) {
-		findItem(product)
-			.ifPresentOrElse(i -> i.setCount(count), () -> items.add(new OrderItem(product, this, count)));
+		items.add(new OrderItem(product, this, count));
 	}
 	
 	public void purgeItem(Product product) {
-		findItem(product)
-			.ifPresent(i -> items.remove(i));
-	}
-	
-	private Optional<OrderItem> findItem(Product product) {
-		return items.stream()
-				.filter(i -> i.getProduct().equals(product))
-				.findFirst();
+		items.remove(new OrderItem(product, this, 0));
 	}
 	
 }
