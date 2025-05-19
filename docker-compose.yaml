@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE:-app}
+      POSTGRES_USER: ${POSTGRES_USER:?error}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./volumes/user-service-db:/var/lib/postgresql/data

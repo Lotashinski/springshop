@@ -3,6 +3,7 @@ package com.github.lotashinski.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.github.lotashinski.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.dto.CategoryCriteriaDto;
@@ -17,6 +18,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Service
 @Slf4j
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
