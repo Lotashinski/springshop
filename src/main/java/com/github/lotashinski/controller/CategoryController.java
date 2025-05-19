@@ -3,12 +3,14 @@ package com.github.lotashinski.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/categories")
+@RequestMapping(path = "/categories", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CategoryController {
 
 	private final CategoryService service;
@@ -47,7 +49,7 @@ public class CategoryController {
 	 * @return created category as {@link CategoryDto} 
 	 */
 	@PostMapping
-	public ResponseEntity<CategoryDto> create(CategoryDataDto data) {
+	public ResponseEntity<CategoryDto> create(@RequestBody CategoryDataDto data) {
 		return ResponseEntity.ok(service.create(data));
 	}
 	
@@ -59,7 +61,7 @@ public class CategoryController {
 	 * @return category as {@link CategoryDto}
 	 */
 	@GetMapping(path = "/{id:\\d+}")
-	public ResponseEntity<CategoryDto> read(@PathVariable Long id) {
+	public ResponseEntity<CategoryDto> read(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(service.read(id));
 	}
 	
@@ -72,7 +74,7 @@ public class CategoryController {
 	 * @return category as {@link CategoryDto}
 	 */
 	@PutMapping(path = "/{id:\\d+}")
-	public ResponseEntity<CategoryDto> update(@PathVariable Long id, CategoryDataDto data) {
+	public ResponseEntity<CategoryDto> update(@PathVariable("id") Long id, @RequestBody CategoryDataDto data) {
 		return ResponseEntity.ok(service.update(id, data));
 	}
 	
@@ -84,7 +86,7 @@ public class CategoryController {
 	 */
 	@DeleteMapping(path = "/{id:\\d+}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
+	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
 	}
 	
