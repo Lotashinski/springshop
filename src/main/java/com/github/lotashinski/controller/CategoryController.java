@@ -32,7 +32,7 @@ public class CategoryController {
 	private final CategoryService service;
 	
 	/**
-	 * Load by criteria ({@link CategoryCriteriaDto}) categories and sort them by title 
+	 * Load by criteria ({@link CategoryCriteriaDto}) categories and sort them by {@code title} 
 	 * 
 	 * @param criteria use as a condition. {@code null} fields do not limit the result
 	 * @return sorted collection of categories ({@link CategoryCollectionItemDto})
@@ -46,11 +46,11 @@ public class CategoryController {
 	 * Create new category
 	 * 
 	 * @param data data for {@link Category}
-	 * @return created category as {@link CategoryDto} 
+	 * @return created entity as {@link CategoryDto} 
 	 */
 	@PostMapping
 	public ResponseEntity<CategoryDto> create(@RequestBody CategoryDataDto data) {
-		return ResponseEntity.ok(service.create(data));
+		return new ResponseEntity<>(service.create(data), HttpStatus.CREATED);
 	}
 	
 	/**

@@ -12,8 +12,8 @@ public class ProductDto {
 	
 	private String title;
 	
-	private BigDecimal price;
+	private BigDecimal cost;
 	
-	private Collection<Long> categories;
+	private Collection<? extends CategoryCollectionItemDto> categories;
 	
 }

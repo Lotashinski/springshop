@@ -11,6 +11,6 @@ public class ProductCollectionItemDto {
 	
 	private String title;
 	
-	private BigDecimal price;
+	private BigDecimal cost;
 	
 }

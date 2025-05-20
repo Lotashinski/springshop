@@ -10,7 +10,7 @@ public class ProductDataDto {
 
 	private String title;
 	
-	private BigDecimal price;
+	private BigDecimal cost;
 	
 	private Collection<Long> categories;
 	

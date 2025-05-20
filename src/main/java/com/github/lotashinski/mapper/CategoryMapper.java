@@ -10,7 +10,7 @@ import com.github.lotashinski.dto.CategoryDataDto;
 import com.github.lotashinski.dto.CategoryDto;
 import com.github.lotashinski.entity.Category;
 
-@Mapper()
+@Mapper
 public interface CategoryMapper {
 	
 	CategoryDto toDto(Category entity);
