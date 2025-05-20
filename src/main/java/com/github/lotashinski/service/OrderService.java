@@ -1,6 +1,6 @@
 package com.github.lotashinski.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.github.lotashinski.dto.OrderCollectionItemDto;
 import com.github.lotashinski.dto.OrderCriteriaDto;
@@ -9,7 +9,7 @@ import com.github.lotashinski.dto.OrderDto;
 
 public interface OrderService {
 	
-	Collection<? extends OrderCollectionItemDto> findByCriteria(OrderCriteriaDto criteria);
+	List<? extends OrderCollectionItemDto> findByCriteria(OrderCriteriaDto criteria);
 	
 	OrderDto create(OrderDataDto dto);
 	

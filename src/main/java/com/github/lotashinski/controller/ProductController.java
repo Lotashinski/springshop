@@ -35,7 +35,7 @@ public class ProductController {
 	 * Load by criteria ({@link ProductCriteriaDto}) products and sort them by {@code title} 
 	 * 
 	 * @param criteria use as a condition. {@code null} fields do not limit the result
-	 * @return sorted collection of categories ({@link ProductCollectionItemDto})
+	 * @return sorted collection of products ({@link ProductCollectionItemDto})
 	 */
 	@GetMapping
 	public ResponseEntity<List<? extends ProductCollectionItemDto>> findByCriteria(ProductCriteriaDto criteria) {
@@ -58,7 +58,7 @@ public class ProductController {
 	 * 
 	 * @throws ResourceNotFoundException if {@link Product} not found
 	 * @param id identifier of {@link Product}
-	 * @return category as {@link ProductDto}
+	 * @return order as {@link ProductDto}
 	 */
 	@GetMapping(path = "/{id:\\d+}")
 	public ResponseEntity<ProductDto> read(@PathVariable("id") Long id) {
@@ -71,7 +71,7 @@ public class ProductController {
 	 * @throws ResourceNotFoundException if {@link Product} not found
 	 * @param id identifier of {@link Product}
 	 * @param data data for {@link Product}
-	 * @return category as {@link ProductDto}
+	 * @return order as {@link ProductDto}
 	 */
 	@PutMapping(path = "/{id:\\d+}")
 	public ResponseEntity<ProductDto> update(@PathVariable("id") Long id, @RequestBody ProductDataDto data) {

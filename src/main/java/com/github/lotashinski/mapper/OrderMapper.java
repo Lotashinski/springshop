@@ -2,6 +2,7 @@ package com.github.lotashinski.mapper;
 
 import java.util.List;
 
+import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -11,8 +12,10 @@ import com.github.lotashinski.dto.OrderCollectionItemDto;
 import com.github.lotashinski.dto.OrderDataDto;
 import com.github.lotashinski.dto.OrderDto;
 import com.github.lotashinski.entity.Order;
+import com.github.lotashinski.mapper.decorator.OrderMapperDecorator;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {OrderItemMapper.class})
+@DecoratedWith(OrderMapperDecorator.class)
 public interface OrderMapper {
 
 	OrderDto toDto(Order entity);

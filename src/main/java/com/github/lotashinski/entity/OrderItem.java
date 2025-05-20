@@ -9,6 +9,7 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -60,6 +61,7 @@ public class OrderItem {
 	private Integer count;
 	
 	@Column(name = "cost_of_one", nullable = false, precision = 10, scale = 2)
+	@Setter(AccessLevel.PROTECTED)
 	private BigDecimal costOfOne;
 	
 	OrderItem(Product product, Order order, int count) {
@@ -74,6 +76,11 @@ public class OrderItem {
 	
 	public Order getOrder() {
 		return id.getOrder();
+	}
+	
+	@PrePersist
+	protected void setCost() {
+		setCostOfOne(getProduct().getCost());
 	}
 	
 }

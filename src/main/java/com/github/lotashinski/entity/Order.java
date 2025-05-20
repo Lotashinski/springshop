@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -32,7 +33,8 @@ public class Order {
 	private Long id;
 	
 	@Column(name = "created_at", nullable = false)
-	private LocalDateTime createdAt = LocalDateTime.now();
+	@Setter(AccessLevel.PROTECTED)
+	private LocalDateTime createdAt;
 	
 	@Column(name = "customer_name")
 	private String customerName;
@@ -47,12 +49,17 @@ public class Order {
 	@Setter(AccessLevel.PROTECTED)
 	private Set<OrderItem> items = new HashSet<>();
 	
-	public void putItem(Product product, int count) {
+	public void putItem(Product product, int count) {		
 		items.add(new OrderItem(product, this, count));
 	}
 	
 	public void purgeItem(Product product) {
 		items.remove(new OrderItem(product, this, 0));
+	}
+	
+	@PrePersist
+	protected void updateTimestamp() {
+		createdAt = LocalDateTime.now();
 	}
 	
 }
