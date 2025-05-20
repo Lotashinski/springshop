@@ -5,6 +5,7 @@ import java.util.List;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 
 import com.github.lotashinski.dto.ProductCollectionItemDto;
@@ -13,7 +14,7 @@ import com.github.lotashinski.dto.ProductDto;
 import com.github.lotashinski.entity.Product;
 import com.github.lotashinski.mapper.decorator.ProductMapperDecorator;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 @DecoratedWith(ProductMapperDecorator.class)
 public interface ProductMapper {
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.lotashinski.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.dto.CategoryCriteriaDto;
@@ -14,7 +15,6 @@ import com.github.lotashinski.mapper.CategoryMapper;
 import com.github.lotashinski.repository.CategoryRepository;
 import com.github.lotashinski.service.CategoryService;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	private final CategoryMapper categoryMapper;
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<? extends CategoryCollectionItemDto> findByCriteria(CategoryCriteriaDto criteria) {
 		log.info("Load categories by criteria [criteria: {}]", criteria);
@@ -48,6 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryMapper.toDto(category);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public CategoryDto read(Long id) {
 		log.info("Read category by id [id: {}]", id);
@@ -56,7 +58,7 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		return categoryMapper.toDto(entity);
 	}
-
+	
 	@Transactional
 	@Override
 	public CategoryDto update(Long id, CategoryDataDto data) {

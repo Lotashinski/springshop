@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.lotashinski.dto.ProductCollectionItemDto;
 import com.github.lotashinski.dto.ProductCriteriaDto;
@@ -26,6 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	private final ProductMapper productMapper;
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<? extends ProductCollectionItemDto> findByCriteria(ProductCriteriaDto criteria) {
 		log.info("Load products by criteria [criteria: {}]", criteria);
@@ -36,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.toItemDtoList(entities);
 	}
 
+	@Transactional
 	@Override
 	public ProductDto create(ProductDataDto dto) {
 		log.info("Create new product [data: {}]", dto);
@@ -46,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.toDto(entity);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public ProductDto read(Long id) {
 		log.info("Read product by id [id: {}]", id);
@@ -55,6 +59,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.toDto(entity);
 	}
 
+	@Transactional
 	@Override
 	public ProductDto update(Long id, ProductDataDto data) {
 		log.info("Update product by id [id: {}, data: {}]", id, data);
@@ -66,6 +71,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.toDto(entity);
 	}
 
+	@Transactional
 	@Override
 	public void delete(Long id) {
 		log.info("Delete product by id [id: {}]", id);

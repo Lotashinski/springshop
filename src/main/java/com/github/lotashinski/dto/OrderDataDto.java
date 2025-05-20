@@ -13,6 +13,6 @@ public class OrderDataDto {
 	
 	private Boolean isFinished;
 	
-	private Collection<? extends OrderItemCreateDto> items;
+	private Collection<? extends OrderItemDataDto> items;
 	
 }

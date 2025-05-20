@@ -10,17 +10,23 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import com.github.lotashinski.config.DotenvUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class App {
 	
 	public static void main(String[] args) throws Exception {
-		new App().startJetty(8080);
+		String portStr = DotenvUtils.dotenv()
+				.get("SERVER_PORT", "8080");
+		Integer port = Integer.valueOf(portStr);
+		new App().startJetty(port);
 	}
 	
 	private void startJetty(int port) throws Exception {
 		log.info("Starting server at port {}", port);
+		
 		Server server = new Server(port);
 		server.setHandler(getServletContextHandler(getContext()));
 		server.start();

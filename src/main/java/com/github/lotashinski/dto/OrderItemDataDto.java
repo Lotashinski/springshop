@@ -3,7 +3,7 @@ package com.github.lotashinski.dto;
 import lombok.Data;
 
 @Data
-public class OrderItemCreateDto {
+public class OrderItemDataDto {
 
 	private Long productId;
 	

@@ -2,9 +2,11 @@ package com.github.lotashinski.mapper.decorator;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.github.lotashinski.dto.ProductDataDto;
 import com.github.lotashinski.entity.Category;
@@ -21,9 +23,15 @@ public abstract class ProductMapperDecorator implements ProductMapper {
 	@Setter
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	@Setter
+	@Qualifier("delegate")
+	private ProductMapper delegate;
+	
 	@Override
 	public Product toEntity(ProductDataDto dto, Product entity) {
-		Collection<Long> categoriesIds = new HashSet<>(dto.getCategories());
+		entity = delegate.toEntity(dto, entity);
+		Collection<Long> categoriesIds =  new HashSet<>(dto.getCategories() == null ? Set.of() : dto.getCategories());
 		Collection<Category> categories = categoryRepository.findAllById(categoriesIds);
 		
 		if (categoriesIds.size() != categories.size()) {
@@ -35,6 +43,8 @@ public abstract class ProductMapperDecorator implements ProductMapper {
 			throw new ResourceNotFoundException(String.format("Categories not found: %s", categoriesIds.toString()));
 		}
 		
+		entity.getCategories()
+			.clear();
 		entity.getCategories()
 		 	.addAll(categories);
 		

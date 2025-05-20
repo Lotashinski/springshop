@@ -9,7 +9,7 @@ public class OrderItemDto {
 
 	private Long productId;
 	
-	private String prtoductName;
+	private String productTitle;
 	
 	private BigDecimal costOfOne;
 
