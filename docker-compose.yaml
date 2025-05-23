@@ -5,7 +5,30 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE:-app}
       POSTGRES_USER: ${POSTGRES_USER:?error}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
+    networks:
+    - internal
     ports:
     - "5432:5432"
     volumes:
-    - ./volumes/user-service-db:/var/lib/postgresql/data
+    - ./volumes/postgres:/var/lib/postgresql/data
+
+  api:
+    build: ./api
+    container_name: api-service
+    ports:
+    - "8080:8080"
+    networks:
+    - internal
+    depends_on:
+    - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE:-app}
+      POSTGRES_USER: ${POSTGRES_USER:?error}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
+    volumes:
+    - ./volumes/api:/var/lib/postgresql/data
+
+networks:
+  internal:
+    driver: bridge

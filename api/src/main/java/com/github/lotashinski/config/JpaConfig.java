@@ -22,15 +22,25 @@ import jakarta.persistence.EntityManagerFactory;
 @EnableTransactionManagement
 public class JpaConfig {
 
+	private static final String POSTGRES_USER = "POSTGRES_USER";
+	
+	private static final String POSTGRES_PASSWORD = "POSTGRES_PASSWORD";
+	
+	private static final String POSTGRES_DATABASE = "POSTGRES_DATABASE";
+	
+	private static final String POSTGRES_HOST = "POSTGRES_HOST";
+	
+	private static final String POSTGRES_PORT = "POSTGRES_PORT";
+	
 	@Bean
     public DataSource dataSource() {
 		Dotenv de = DotenvUtils.dotenv();
 		
-	    String user = de.get("POSTGRES_USER");
-	    String pass = de.get("POSTGRES_PASSWORD");
-	    String database = de.get("POSTGRES_DATABASE");
-	    String host = de.get("POSTGRES_HOST", "127.0.0.1");
-	    String port = de.get("POSTGRES_HOST", "5432");
+	    String user = de.get(POSTGRES_USER);
+	    String pass = de.get(POSTGRES_PASSWORD);
+	    String database = de.get(POSTGRES_DATABASE);
+	    String host = de.get(POSTGRES_HOST, "127.0.0.1");
+	    String port = de.get(POSTGRES_PORT, "5432");
 	    
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
