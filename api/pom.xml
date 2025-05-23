@@ -9,9 +9,9 @@
 		<artifactId>springshop-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>api</artifactId>
-    <packaging>jar</packaging>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>

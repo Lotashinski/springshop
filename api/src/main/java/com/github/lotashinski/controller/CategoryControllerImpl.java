@@ -19,7 +19,7 @@ import com.github.lotashinski.dto.CategoryCriteriaDto;
 import com.github.lotashinski.dto.CategoryDataDto;
 import com.github.lotashinski.dto.CategoryDto;
 import com.github.lotashinski.dto.CategoryCollectionItemDto;
-import com.github.lotashinski.service.CategoryService; 
+import com.github.lotashinski.service.CategoryService;
 
 import lombok.RequiredArgsConstructor;
 

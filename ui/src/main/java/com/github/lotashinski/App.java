@@ -19,7 +19,7 @@ public class App {
 	
 	public static void main(String[] args) throws Exception {
 		String portStr = DotenvUtils.dotenv()
-				.get("SERVER_PORT", "8080");
+				.get("SERVER_PORT", "8000");
 		Integer port = Integer.valueOf(portStr);
 		new App().startJetty(port);
 	}
