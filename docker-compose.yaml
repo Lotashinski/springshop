@@ -27,7 +27,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:?error}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
     volumes:
-    - ./volumes/api:/var/lib/postgresql/data
+    - ./volumes/api:/app/logs
 
 networks:
   internal:
