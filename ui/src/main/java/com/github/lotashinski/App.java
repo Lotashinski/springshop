@@ -30,6 +30,7 @@ public class App {
 		Server server = new Server(port);
 		server.setHandler(getServletContextHandler(getContext()));
 		server.start();
+		
 		log.info("Server started at port {}", port);
 		server.join();
 	}

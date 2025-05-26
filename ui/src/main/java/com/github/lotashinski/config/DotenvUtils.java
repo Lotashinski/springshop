@@ -17,6 +17,7 @@ public class DotenvUtils {
 	private static Dotenv configureDotenv() {
 		return Dotenv
 		   .configure()
+		   .ignoreIfMissing()
 		   .systemProperties()
 		   .load();
 	}
