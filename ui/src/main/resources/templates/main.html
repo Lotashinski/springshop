@@ -2,7 +2,9 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <body>
-	<h1>Lorem</h1>
+	<ul>
+		<li th:each="category : ${categories}"><span th:text="${category.title}">CATEGORY_TITLE</span></li>
+	</ul>
 </body>
 
 </html>
