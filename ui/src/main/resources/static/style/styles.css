@@ -24,7 +24,7 @@ main {
     padding: .5rem 0 .5rem 0;
     flex-grow: 1;
     display: flex;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .container {
@@ -35,12 +35,24 @@ main {
 .content { 
     display: flex;
     flex-direction: column;
-    padding-inline: 1rem;
+    padding: 1rem;
     border-radius: .5rem;
+}
+
+header > .content {
+    border-radius: 0 0 .5rem .5rem;
+}
+
+footer > .content {
+    border-radius: .5rem .5rem 0 0;
 }
 
 .h100 {
     height: 100%;
+}
+
+.m0 {
+    margin: 0;
 }
 
 .grow {

@@ -11,23 +11,26 @@
 <body>
     <header th:fragment="header" class="container">
         <section class="content bg-base-master">
-            <h1>Springshop</h1>
+            <h1 class="m0">Springshop</h1>
         </section>
     </header>
 
     <main class="container">
         <aside class="content h100 bg-content">
-            <ul>
-                <li>
-                    <span>LCD</span>
-                </li>
-                <li>
-                    <span>SoC</span>
-                </li>
-                <li>
-                    <span>Transistors</span>
-                </li>
-            </ul>
+            <form>
+                <ul>
+                    <li>
+                        <span>LCD</span>
+                    </li>
+                    <li>
+                        <span>SoC</span>
+                    </li>
+                    <li>
+                        <span>Transistors</span>
+                    </li>
+                </ul>
+                <input type="submit" value="Set"/>
+            </form>
         </aside>
         <article class="content h100 grow bg-content">
             <ul>
@@ -46,7 +49,7 @@
 
     <footer th:fragment="footer" class="container">
         <section class="content bg-alta-master">
-            <p>
+            <p class="m0">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates aut ex, officiis laudantium quia
                 quidem cupiditate corrupti ducimus commodi deleniti, odio laboriosam cumque facilis excepturi iste
                 accusantium eum facere temporibus.
