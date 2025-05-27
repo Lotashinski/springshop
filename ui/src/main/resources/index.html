@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header th:fragment="header" class="container">
+        <section class="content bg-base-master">
+            <h1>Springshop</h1>
+        </section>
+    </header>
+
+    <main class="container">
+        <aside class="content h100 bg-content">
+            <ul>
+                <li>
+                    <span>LCD</span>
+                </li>
+                <li>
+                    <span>SoC</span>
+                </li>
+                <li>
+                    <span>Transistors</span>
+                </li>
+            </ul>
+        </aside>
+        <article class="content h100 grow bg-content">
+            <ul>
+                <li>
+                    Lorem ipsum dolor sit.
+                </li>
+                <li>
+                    Lorem ipsum dolor sit.
+                </li>
+                <li>
+                    Lorem ipsum dolor sit.
+                </li>
+            </ul>
+        </article>
+    </main>
+
+    <footer th:fragment="footer" class="container">
+        <section class="content bg-alta-master">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates aut ex, officiis laudantium quia
+                quidem cupiditate corrupti ducimus commodi deleniti, odio laboriosam cumque facilis excepturi iste
+                accusantium eum facere temporibus.
+            </p>
+        </section>
+    </footer>
+
+</body>
+
+</html>
