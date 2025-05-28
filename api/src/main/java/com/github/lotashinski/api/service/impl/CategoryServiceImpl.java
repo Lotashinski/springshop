@@ -3,12 +3,14 @@ package com.github.lotashinski.api.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.lotashinski.api.entity.Category;
 import com.github.lotashinski.api.mapper.CategoryMapper;
 import com.github.lotashinski.api.repository.CategoryRepository;
+import com.github.lotashinski.api.repository.specification.CategorySpecification;
 import com.github.lotashinski.api.service.CategoryService;
 import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.api.dto.CategoryCriteriaDto;
@@ -32,7 +34,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<? extends CategoryCollectionItemDto> findByCriteria(CategoryCriteriaDto criteria) {
 		log.info("Load categories by criteria [criteria: {}]", criteria);
 		
-		List<Category> entities = categoryRepository.findAll(Sort.by("title"));
+		Specification<Category> spec = CategorySpecification.hasIdentifiersIn(criteria.getIds())
+				.and(CategorySpecification.hasExistsProduct(criteria.getProduct()));
+		List<Category> entities = categoryRepository.findAll(spec, Sort.by("title"));
 
 		return categoryMapper.toItemDtoList(entities);
 	}

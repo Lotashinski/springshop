@@ -12,4 +12,6 @@ public class CategoryCriteriaDto implements Serializable {
 
 	private Collection<? extends Long> ids;
 	
+	private Long product;
+	
 }
