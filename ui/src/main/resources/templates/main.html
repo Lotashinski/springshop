@@ -44,10 +44,10 @@
                     <article class="product-list-item">
                         <h4 class="product-list-item_brand"><a th:href="'/products/' + ${product.id}" th:text="${product.title}"></a></h4>
                         <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
-                        <div class="product-list-item_description">
+                        <form class="product-list-item_description" action="">
                             <span class="product-list-item_description_cost" th:text="${product.cost} + ' BYN'">COST</span>
                             <input type="submit" class="button" value="Buy" th:onclick="'addProduct(' + ${product.id} + ')'" />
-                        </div>
+                        </form>
                     </article>
                 </li>
             </ul>

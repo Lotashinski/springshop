@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.lotashinski.ui.service.BucketService;
 import com.github.lotashinski.ui.service.CategoriesService;
 import com.github.lotashinski.ui.service.ProductService;
 
@@ -22,6 +23,8 @@ public class IndexController {
 	
 	private final ProductService productService;
 	
+//	private final BucketService bucketService;
+	
 	@GetMapping({"/", "index"})
 	public String getMethodName(Model model, @RequestParam(name = "categories", required = false) Set<Long> categories) {
 		log.debug("Show products for categories [{}]", categories);
@@ -29,6 +32,7 @@ public class IndexController {
 		model.addAttribute("categories", categoryService.getAll());
 		model.addAttribute("products", productService.getAll());
 		model.addAttribute("selected", categories == null ? Set.of() : categories);
+//		model.addAttribute("bucket", bucketService.getProducts());
 		
 		return "main";
 	}

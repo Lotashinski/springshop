@@ -1,3 +1,4 @@
+
 function addProduct(identifier) {
     const productsStorage = localStorage.getItem("products") ?? "{}"
     const products = JSON.parse(productsStorage)
