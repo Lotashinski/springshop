@@ -1,6 +1,7 @@
 package com.github.lotashinski.ui.service.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -8,11 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.github.lotashinski.api.dto.ProductCollectionItemDto;
-import com.github.lotashinski.ui.service.BucketService;
+import com.github.lotashinski.api.dto.ProductCriteriaDto;
+import com.github.lotashinski.ui.client.ProductClient;
+import com.github.lotashinski.ui.service.CartService;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @SessionScope
-public class BucketServiceImpl implements BucketService {
+@RequiredArgsConstructor
+public class CartServiceImpl implements CartService {
+
+	private final ProductClient productClient;
 	
 	private Map<Long, Integer> bucket = new HashMap<>();
 	
@@ -28,7 +36,12 @@ public class BucketServiceImpl implements BucketService {
 
 	@Override
 	public Set<? extends ProductCollectionItemDto> getProducts() {
-		return null;
+		if (bucket.isEmpty()) return Set.of();
+		
+		ProductCriteriaDto criteria = new ProductCriteriaDto();
+		criteria.setIds(getProductIds());
+		
+		return new HashSet<>(productClient.findByCriteria(criteria));
 	}
 
 	@Override
@@ -41,6 +54,11 @@ public class BucketServiceImpl implements BucketService {
 		if (bucket.containsKey(productId)) return;
 		
 		putProduct(productId, 1);
+	}
+
+	@Override
+	public Set<? extends Long> getProductIds() {
+		return bucket.keySet();
 	}
 
 }

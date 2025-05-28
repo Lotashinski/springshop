@@ -4,7 +4,9 @@ import java.util.Set;
 
 import com.github.lotashinski.api.dto.ProductCollectionItemDto;
 
-public interface BucketService {
+public interface CartService {
+	
+	Set<? extends Long> getProductIds();
 	
 	Set<? extends ProductCollectionItemDto> getProducts();
 	
