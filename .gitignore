@@ -93,3 +93,7 @@ nb-configuration.xml
 
 ## Local envs
 .env
+
+
+## Docker volumes
+volumes

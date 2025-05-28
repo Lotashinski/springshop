@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/orders", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
 
 	private final OrderService service;

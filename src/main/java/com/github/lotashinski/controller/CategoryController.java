@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/categories", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/categories", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CategoryController {
 
 	private final CategoryService service;
