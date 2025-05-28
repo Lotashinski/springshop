@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 import org.eclipse.jetty.ee10.servlet.ServletHolder;
+import org.eclipse.jetty.ee10.servlet.SessionHandler;
 import org.eclipse.jetty.server.Server;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -39,9 +41,13 @@ public class App {
 		ServletContextHandler contextHandler = new ServletContextHandler();
 		contextHandler.setErrorHandler(null);
 		contextHandler.setContextPath("/");
+		
+		contextHandler.setSessionHandler(new SessionHandler());
+		
 		contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), "/");
 		contextHandler.addEventListener(new ContextLoaderListener(context));
-
+		contextHandler.addEventListener(new RequestContextListener());
+		
 		return contextHandler;
 	}
 

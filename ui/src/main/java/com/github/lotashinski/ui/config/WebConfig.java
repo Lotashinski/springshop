@@ -14,7 +14,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.github.lotashinski")
+@ComponentScan("com.github.lotashinski.ui")
 public class WebConfig implements WebMvcConfigurer {
 	 
 	@Override
@@ -51,5 +51,5 @@ public class WebConfig implements WebMvcConfigurer {
         
         return resolver;
     }
-	
+    
 }

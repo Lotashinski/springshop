@@ -1,6 +1,11 @@
 package com.github.lotashinski.ui.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.context.request.RequestContextListener;
+
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -19,4 +24,10 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new String[] { "/" };
 	}
 
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException{
+		super.onStartup(servletContext);
+		servletContext.addListener(new RequestContextListener());
+	}
+	
 }
