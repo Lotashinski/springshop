@@ -8,10 +8,10 @@ public interface BucketService {
 	
 	Set<? extends ProductCollectionItemDto> getProducts();
 	
-	int getCount(ProductCollectionItemDto product);
+	int getCount(Long productId);
 	
-	void putProduct(ProductCollectionItemDto product, int count);
+	void putProduct(Long productId, int count);
 	
-	void purgeProduct(ProductCollectionItemDto product);
+	void purgeProduct(Long productId);
 	
 }

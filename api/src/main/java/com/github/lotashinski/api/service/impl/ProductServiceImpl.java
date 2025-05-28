@@ -3,12 +3,14 @@ package com.github.lotashinski.api.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.lotashinski.api.entity.Product;
 import com.github.lotashinski.api.mapper.ProductMapper;
 import com.github.lotashinski.api.repository.ProductRepository;
+import com.github.lotashinski.api.repository.specification.ProductSpecification;
 import com.github.lotashinski.api.service.ProductService;
 import com.github.lotashinski.api.dto.ProductCollectionItemDto;
 import com.github.lotashinski.api.dto.ProductCriteriaDto;
@@ -32,8 +34,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<? extends ProductCollectionItemDto> findByCriteria(ProductCriteriaDto criteria) {
 		log.info("Load products by criteria [criteria: {}]", criteria);
 		
-		// TODO change to query
-		List<Product> entities = productRepository.findAll(Sort.by("title"));
+		Specification<Product> spec = ProductSpecification.hasIdentifiersIn(criteria.getIds())
+				.and(ProductSpecification.hasExistsInCategory(criteria.getCategory()))
+				.and(ProductSpecification.hasExistsInCategories(criteria.getCategories()));
+		List<Product> entities = productRepository.findAll(spec, Sort.by("title"));
 		
 		return productMapper.toItemDtoList(entities);
 	}

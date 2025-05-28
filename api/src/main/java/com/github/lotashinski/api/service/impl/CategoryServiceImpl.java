@@ -32,7 +32,6 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<? extends CategoryCollectionItemDto> findByCriteria(CategoryCriteriaDto criteria) {
 		log.info("Load categories by criteria [criteria: {}]", criteria);
 		
-		// TODO change to query
 		List<Category> entities = categoryRepository.findAll(Sort.by("title"));
 
 		return categoryMapper.toItemDtoList(entities);

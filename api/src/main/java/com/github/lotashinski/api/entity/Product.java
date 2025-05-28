@@ -46,11 +46,17 @@ public class Product {
 	private Set<Category> categories = new HashSet<>();
 
 	public void addCategory(Category category) {
+		if (categories.contains(category)) return;
+		
 		categories.add(category);
+		category.addProduct(this);
 	}
 
 	public void removeCategory(Category category) {
+		if (! categories.contains(category)) return;
+		
 		categories.remove(category);
+		category.removeProduct(this);
 	}
 
 }
