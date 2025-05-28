@@ -10,39 +10,124 @@
 
 <body>
     <header th:fragment="header" class="container">
-        <section class="content bg-base-master">
+        <section class="header content bg-base-master">
             <h1 class="m0">Springshop</h1>
+            <nav>
+                <a href="/products">Products</a>
+                <a href="/categories">Categories</a>
+            </nav>
         </section>
     </header>
 
     <main class="container">
         <aside class="content h100 bg-content">
+            <h3>Categories:</h3>
             <form>
-                <ul>
+                <ul class="select-list">
                     <li>
-                        <span>LCD</span>
+                        <input id="category-1" type="checkbox" name="category" value="1" />
+                        <label for="category-1">LCD</label>
                     </li>
                     <li>
-                        <span>SoC</span>
+                        <input id="category-2" type="checkbox" name="category" value="2" />
+                        <label for="category-2">SoC</label>
                     </li>
                     <li>
-                        <span>Transistors</span>
+                        <input id="category-3" type="checkbox" name="category" value="3" />
+                        <label for="category-3">Transisitors</label>
                     </li>
                 </ul>
-                <input type="submit" value="Set"/>
+                <input type="submit" class="button w100" value="Set" />
             </form>
         </aside>
         <article class="content h100 grow bg-content">
-            <ul>
+            <ul class="product-list">
                 <li>
-                    Lorem ipsum dolor sit.
+                    <article class="product-list-item">
+                        <h4 class="product-list-item_brand">LCD 1602</h4>
+                        <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
+                        <div class="product-list-item_description">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto nostrum
+                                voluptas
+                                exercitationem! Odio, distinctio sunt omnis deserunt, ullam amet laborum repellat
+                                explicabo
+                                ad a, perferendis sit iste aut quae?
+                            </p>
+                            <span class="product-list-item_description_cost">1400 BYN</span>
+                            <input type="submit" class="button" value="Buy" onclick="addProduct(12)" />
+                        </div>
+                    </article>
                 </li>
                 <li>
-                    Lorem ipsum dolor sit.
+                    <article class="product-list-item">
+                        <h4 class="product-list-item_brand">LCD 1602</h4>
+                        <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
+                        <div class="product-list-item_description">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto nostrum
+                                voluptas
+                                exercitationem! Odio, distinctio sunt omnis deserunt, ullam amet laborum repellat
+                                explicabo
+                                ad a, perferendis sit iste aut quae?
+                            </p>
+                            <span class="product-list-item_description_cost">1400 BYN</span>
+                            <input type="submit" class="button" value="Buy" onclick="addProduct(12)" />
+                        </div>
+                    </article>
                 </li>
                 <li>
-                    Lorem ipsum dolor sit.
+                    <article class="product-list-item">
+                        <h4 class="product-list-item_brand">LCD 1602</h4>
+                        <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
+                        <div class="product-list-item_description">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto nostrum
+                                voluptas
+                                exercitationem! Odio, distinctio sunt omnis deserunt, ullam amet laborum repellat
+                                explicabo
+                                ad a, perferendis sit iste aut quae?
+                            </p>
+                            <span class="product-list-item_description_cost">1400 BYN</span>
+                            <input type="submit" class="button" value="Buy" onclick="addProduct(12)" />
+                        </div>
+                    </article>
                 </li>
+                <li>
+                    <article class="product-list-item">
+                        <h4 class="product-list-item_brand">LCD 1602</h4>
+                        <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
+                        <div class="product-list-item_description">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto nostrum
+                                voluptas
+                                exercitationem! Odio, distinctio sunt omnis deserunt, ullam amet laborum repellat
+                                explicabo
+                                ad a, perferendis sit iste aut quae?
+                            </p>
+                            <span class="product-list-item_description_cost">1400 BYN</span>
+                            <input type="submit" class="button" value="Buy" onclick="addProduct(12)" />
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="product-list-item">
+                        <h4 class="product-list-item_brand">LCD 1602</h4>
+                        <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
+                        <div class="product-list-item_description">
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto nostrum
+                                voluptas
+                                exercitationem! Odio, distinctio sunt omnis deserunt, ullam amet laborum repellat
+                                explicabo
+                                ad a, perferendis sit iste aut quae?
+                            </p>
+                            <span class="product-list-item_description_cost">1400 BYN</span>
+                            <input type="submit" class="button" value="Buy" onclick="addProduct(12)" />
+                        </div>
+                    </article>
+                </li>
+
             </ul>
         </article>
     </main>
@@ -56,7 +141,11 @@
             </p>
         </section>
     </footer>
-
+    <script>
+        function addProduct(identifier) {
+            console.log(identifier)
+        }
+    </script>
 </body>
 
 </html>
