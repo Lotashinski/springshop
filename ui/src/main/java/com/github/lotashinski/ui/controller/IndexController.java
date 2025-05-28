@@ -2,7 +2,6 @@ package com.github.lotashinski.ui.controller;
 
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import com.github.lotashinski.ui.service.CategoriesService;
 import com.github.lotashinski.ui.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -28,9 +26,7 @@ public class IndexController {
 	
 	private final ProductService productService;
 	
-	@Setter
-	@Autowired
-	private BucketService bucketService;
+	private final BucketService bucketService;
 	
 	@GetMapping({"/", "index"})
 	public String getMethodName(Model model, @RequestParam(name = "categories", required = false) Set<Long> categories) {
@@ -40,7 +36,7 @@ public class IndexController {
 			    RequestContextHolder.getRequestAttributes() != null);
 		
 		model.addAttribute("categories", categoryService.getAll());
-		model.addAttribute("products", productService.getAll());
+		model.addAttribute("products", productService.getAll(categories));
 		model.addAttribute("selected", categories == null ? Set.of() : categories);
 		model.addAttribute("bucket", bucketService.getProducts());
 		
@@ -49,7 +45,7 @@ public class IndexController {
 	
 	@PostMapping("/{id}")
 	public String addProduct(@PathVariable("id") Long id) {
-		
+		bucketService.putProduct(id, 1);
 		
 		return "redirect:/";
 	}

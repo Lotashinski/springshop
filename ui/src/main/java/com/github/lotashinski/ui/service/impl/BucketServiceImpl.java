@@ -36,4 +36,11 @@ public class BucketServiceImpl implements BucketService {
 		return bucket.getOrDefault(product, 0);
 	}
 
+	@Override
+	public void putProduct(Long productId) {
+		if (bucket.containsKey(productId)) return;
+		
+		putProduct(productId, 1);
+	}
+
 }

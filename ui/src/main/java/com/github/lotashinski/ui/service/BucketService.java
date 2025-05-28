@@ -10,6 +10,8 @@ public interface BucketService {
 	
 	int getCount(Long productId);
 	
+	void putProduct(Long productId);
+	
 	void putProduct(Long productId, int count);
 	
 	void purgeProduct(Long productId);

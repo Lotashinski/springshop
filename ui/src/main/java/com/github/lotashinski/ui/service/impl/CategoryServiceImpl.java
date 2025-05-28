@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
+import com.github.lotashinski.api.dto.CategoryCriteriaDto;
 import com.github.lotashinski.ui.client.CategoriesClient;
 import com.github.lotashinski.ui.service.CategoriesService;
 
@@ -20,7 +21,7 @@ public class CategoryServiceImpl implements CategoriesService {
 	
 	@Override
 	public List<? extends CategoryCollectionItemDto> getAll() {
-		return categories.findByCriteria();
+		return categories.findByCriteria(new CategoryCriteriaDto());
 	}
 	
 }

@@ -44,7 +44,7 @@
                     <article class="product-list-item">
                         <h4 class="product-list-item_brand"><a th:href="'/products/' + ${product.id}" th:text="${product.title}"></a></h4>
                         <img class="product-list-item_media" src="static/img/cat.png" alt="Product image" />
-                        <form class="product-list-item_description" th:action="'/' + ${product.id}" method="POST">
+                        <form class="product-list-item_description" th:action="'/' + ${product.id}" method="post">
                             <span class="product-list-item_description_cost" th:text="${product.cost} + ' BYN'">COST</span>
                             <input type="submit" class="button" value="Buy" />
                         </form>
