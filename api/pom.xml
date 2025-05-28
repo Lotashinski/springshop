@@ -162,7 +162,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.github.lotashinski.App</mainClass>
+							<mainClass>com.github.lotashinski.api.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

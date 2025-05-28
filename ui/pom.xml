@@ -99,10 +99,6 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-spring</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -148,7 +144,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.github.lotashinski.App</mainClass>
+                            <mainClass>com.github.lotashinski.ui.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
