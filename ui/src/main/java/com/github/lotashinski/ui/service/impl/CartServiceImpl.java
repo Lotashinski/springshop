@@ -1,8 +1,7 @@
 package com.github.lotashinski.ui.service.impl;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -22,43 +21,31 @@ public class CartServiceImpl implements CartService {
 
 	private final ProductClient productClient;
 	
-	private Map<Long, Integer> bucket = new HashMap<>();
+	private Set<Long> bucket = new HashSet<>();
 	
-	@Override
-	public void putProduct(Long product, int count) {
-		bucket.put(product, count);		
-	}
-
 	@Override
 	public void purgeProduct(Long product) {
 		bucket.remove(product);		
 	}
 
 	@Override
-	public Set<? extends ProductCollectionItemDto> getProducts() {
-		if (bucket.isEmpty()) return Set.of();
+	public List<? extends ProductCollectionItemDto> getProducts() {
+		if (bucket.isEmpty()) return List.of();
 		
 		ProductCriteriaDto criteria = new ProductCriteriaDto();
 		criteria.setIds(getProductIds());
 		
-		return new HashSet<>(productClient.findByCriteria(criteria));
-	}
-
-	@Override
-	public int getCount(Long product) {
-		return bucket.getOrDefault(product, 0);
+		return productClient.findByCriteria(criteria);
 	}
 
 	@Override
 	public void putProduct(Long productId) {
-		if (bucket.containsKey(productId)) return;
-		
-		putProduct(productId, 1);
+		bucket.add(productId);
 	}
 
 	@Override
 	public Set<? extends Long> getProductIds() {
-		return bucket.keySet();
+		return bucket;
 	}
 
 }

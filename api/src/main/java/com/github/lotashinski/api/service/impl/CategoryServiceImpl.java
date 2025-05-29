@@ -7,15 +7,15 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
+import com.github.lotashinski.api.dto.CategoryCriteriaDto;
+import com.github.lotashinski.api.dto.CategoryDataDto;
+import com.github.lotashinski.api.dto.CategoryDto;
 import com.github.lotashinski.api.entity.Category;
 import com.github.lotashinski.api.mapper.CategoryMapper;
 import com.github.lotashinski.api.repository.CategoryRepository;
 import com.github.lotashinski.api.repository.specification.CategorySpecification;
 import com.github.lotashinski.api.service.CategoryService;
-import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
-import com.github.lotashinski.api.dto.CategoryCriteriaDto;
-import com.github.lotashinski.api.dto.CategoryDataDto;
-import com.github.lotashinski.api.dto.CategoryDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

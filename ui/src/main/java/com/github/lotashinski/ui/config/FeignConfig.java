@@ -1,14 +1,15 @@
 package com.github.lotashinski.ui.config;
 
-import feign.Feign;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.github.lotashinski.ui.client.CategoriesClient;
+import com.github.lotashinski.ui.client.OrderClient;
 import com.github.lotashinski.ui.client.ProductClient;
+
+import feign.Feign;
+import feign.jackson.JacksonDecoder;
+import feign.jackson.JacksonEncoder;
 
 @Configuration
 public class FeignConfig {
@@ -23,6 +24,11 @@ public class FeignConfig {
 	@Bean
 	public ProductClient productClient() {
 		return feignBuilder().target(ProductClient.class, HOST);
+	}
+	
+	@Bean
+	public OrderClient orderClient() {
+		return feignBuilder().target(OrderClient.class, HOST);
 	}
 	
 	private Feign.Builder feignBuilder() {

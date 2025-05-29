@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.api.dto.CategoryCriteriaDto;
 import com.github.lotashinski.api.dto.CategoryDataDto;
 import com.github.lotashinski.api.dto.CategoryDto;
 import com.github.lotashinski.api.exceptions.ResourceNotFoundException;
 import com.github.lotashinski.api.service.CategoryService;
-import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
 
 import lombok.RequiredArgsConstructor;
 

@@ -12,7 +12,7 @@ services:
     volumes:
     - ./volumes/postgres:/var/lib/postgresql/data
 
-  api:
+  api:    
     build: ./api
     container_name: api-service
     ports:

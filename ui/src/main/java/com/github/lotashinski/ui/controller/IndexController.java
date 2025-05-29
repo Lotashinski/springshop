@@ -43,7 +43,7 @@ public class IndexController {
 	
 	@PostMapping("/{id}")
 	public String addProduct(@PathVariable("id") Long id, @RequestParam(name = "categories", required = false) Set<Long> categories) {
-		cartService.putProduct(id, 1);
+		cartService.putProduct(id);
 		
 		return "redirect:/" + convertCategoriesToQueryString(categories);
 	}
