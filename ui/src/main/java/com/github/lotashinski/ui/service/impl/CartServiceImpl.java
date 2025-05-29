@@ -58,4 +58,11 @@ public class CartServiceImpl implements CartService {
 		return bucket;
 	}
 
+	@Override
+	public void clear() {
+		log.debug("Clear cart");
+		
+		bucket.clear();
+	}
+
 }

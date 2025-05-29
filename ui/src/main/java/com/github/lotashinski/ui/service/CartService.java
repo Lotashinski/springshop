@@ -15,4 +15,6 @@ public interface CartService {
 	
 	void purgeProduct(Long productId);
 	
+	void clear();
+	
 }
