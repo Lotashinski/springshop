@@ -13,9 +13,11 @@ import com.github.lotashinski.ui.client.ProductClient;
 import com.github.lotashinski.ui.service.CartService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @SessionScope
+@Slf4j
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
 
@@ -25,11 +27,15 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public void purgeProduct(Long product) {
+		log.debug("Add product {}", product);
+		
 		bucket.remove(product);		
 	}
 
 	@Override
 	public List<? extends ProductCollectionItemDto> getProducts() {
+		log.debug("Get product");
+		
 		if (bucket.isEmpty()) return List.of();
 		
 		ProductCriteriaDto criteria = new ProductCriteriaDto();
@@ -40,11 +46,15 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void putProduct(Long productId) {
+		log.debug("Put product {}", productId);
+		
 		bucket.add(productId);
 	}
 
 	@Override
 	public Set<? extends Long> getProductIds() {
+		log.debug("Get products");
+		
 		return bucket;
 	}
 
