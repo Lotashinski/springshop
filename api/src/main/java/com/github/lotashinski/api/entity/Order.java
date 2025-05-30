@@ -1,5 +1,6 @@
 package com.github.lotashinski.api.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -48,6 +49,12 @@ public class Order {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id.order")
 	@Setter(AccessLevel.PROTECTED)
 	private Set<OrderItem> items = new HashSet<>();
+	
+	public BigDecimal getCost() {
+		return items.stream()
+				.map(i -> i.getCostOfOne().multiply(new BigDecimal(i.getCount())))
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
 	
 	public void putItem(Product product, int count) {		
 		items.add(new OrderItem(product, this, count));

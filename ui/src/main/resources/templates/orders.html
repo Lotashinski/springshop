@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+	<header th:replace="~{ main.html :: header }"></header>
+
+	<main class="container">
+		<section class="content bg-content grow" th:if="${orders.isEmpty()}">
+			<p>It's empty here for now!</p>
+		</section>
+        <article class="content h100 grow bg-content"
+		  th:if="${! orders.isEmpty()}">
+			<ul class="product-list">
+				<li th:each="order : ${orders}">
+					<article class="product-list-item">
+						<h4 class="product-list-item_brand">
+							<a th:href="'/orders/' + ${order.id}"
+								th:text="${#temporals.format(order.createdAt, 'dd MMM yyyy HH:mm')}">ORDER DATE</a>
+						</h4>
+					</article>
+				</li>
+			</ul>
+			
+			<label for="customerName">Customer name</label>
+			<input id="customerName" type="text" name="customerName" required="required" />
+			
+			<label for="address">Address</label>
+			<input id="address" type="text" name="address" required="required" />
+
+			<input type="submit"
+                class="button" value="Create order" /> 
+		</article>
+	</main>
+
+	<footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>

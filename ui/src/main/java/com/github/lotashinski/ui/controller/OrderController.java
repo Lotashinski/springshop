@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.lotashinski.api.dto.OrderCriteriaDto;
 import com.github.lotashinski.api.dto.OrderDto;
 import com.github.lotashinski.ui.service.OrderService;
 
@@ -20,7 +23,14 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 
 	private final OrderService orderService;
-
+	
+	@GetMapping
+	public String index(Model model, OrderCriteriaDto criteria) {
+		model.addAttribute("orders", orderService.findByCriteria(criteria));
+		
+		return "orders";
+	}
+	
 	@PostMapping
 	public String create(@RequestParam(name = "customerName") String customerName, 
 			@RequestParam(name = "address") String address, 

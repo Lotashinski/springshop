@@ -3,6 +3,7 @@ package com.github.lotashinski.api.mapper;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 
@@ -20,6 +21,7 @@ public interface CategoryMapper {
 	
 	List<CategoryCollectionItemDto> toItemDtoList(List<? extends Category> entities);
 	
+	@Mapping(target = "products", ignore = true)
 	Category toEntity(CategoryDataDto dto, @MappingTarget Category category);
 	
 }
