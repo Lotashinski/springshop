@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+	<header th:replace="~{ main.html :: header }"></header>
+
+	<main class="container">
+		<article class="content h100 grow bg-content">
+			<div>
+				Date: <span
+					th:text="${#temporals.format(order.createdAt, 'dd MMM yyyy HH:mm')}"></span>
+			</div>
+			<div class="product-list-item_description_cost"
+				th:text="${order.cost} + ' BYN'">COST</div>
+			<div>
+				Customer: <span th:text="${order.customerName}"></span>
+			</div>
+			<div>
+				Address: <span th:text="${order.address}"></span>
+			</div>
+			<div>
+				Status: <span th:if="${order.isFinished}">complete</span>
+				<!-- order.isFinished can be null -->
+				<span th:if="${order.isFinished != true}">in progress</span>
+			</div>
+			<section class="content h100 grow bg-content">
+				<ul class="product-list">
+					<li th:each="item : ${order.items}">
+						<article class="product-list-item">
+							<h4 class="product-list-item_brand">
+								<a th:href="'/products/' + ${item.productId}"
+									th:text="${item.productTitle}">PRODUCT_TITLE</a>
+							</h4>
+							<img class="product-list-item_media" src="/static/img/cat.png"
+								alt="Product image" />
+							<div>
+								<div class="product-list-item_description_cost"
+									th:text="${item.costOfOne} + ' BYN'">COST</div>
+								<div th:text="${item.count} + ' item(s)'"></div>
+							</div> 
+						</article>
+					</li>
+				</ul>
+			</section>
+		</article>
+	</main>
+
+	<footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>

@@ -10,6 +10,7 @@ import com.github.lotashinski.api.dto.OrderDataDto;
 import com.github.lotashinski.api.dto.OrderDto;
 
 import feign.Headers;
+import feign.Param;
 import feign.QueryMap;
 import feign.RequestLine;
 
@@ -21,5 +22,8 @@ public interface OrderClient {
 	
 	@RequestLine("GET /orders")
 	List<? extends OrderCollectionItemDto> findByCriteria(@QueryMap  OrderCriteriaDto criteria);
+	
+	@RequestLine("GET /orders/{id}")
+	OrderDto getById(@Param("id") Long id);
 	
 }

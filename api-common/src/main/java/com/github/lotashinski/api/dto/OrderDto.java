@@ -1,6 +1,7 @@
 package com.github.lotashinski.api.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -23,6 +24,8 @@ public class OrderDto implements Serializable {
 	private String address;
 	
 	private Boolean isFinished;
+	
+	private BigDecimal cost;
 	
 	private Collection<? extends OrderItemDto> items;
 	

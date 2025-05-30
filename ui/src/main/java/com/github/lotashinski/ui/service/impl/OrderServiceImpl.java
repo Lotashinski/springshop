@@ -48,6 +48,13 @@ public class OrderServiceImpl implements OrderService {
 		return orderClient.findByCriteria(criteria);
 	}
 	
+	@Override
+	public OrderDto getById(Long id) {
+		log.debug("Get by id {}", id);
+		
+		return orderClient.getById(id);
+	}
+	
 	private static Collection<? extends OrderItemDataDto> generateOrderSet(Map<Long, Integer> products) {
 		
 		return products.entrySet()

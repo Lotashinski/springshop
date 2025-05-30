@@ -15,4 +15,6 @@ public interface OrderService {
 	
 	List<? extends OrderCollectionItemDto> findByCriteria(@QueryMap  OrderCriteriaDto criteria);
 	
+	OrderDto getById(Long id);
+	
 }
