@@ -3,6 +3,9 @@ package com.github.lotashinski.ui.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.lotashinski.ui.client.CategoriesClient;
 import com.github.lotashinski.ui.client.OrderClient;
 import com.github.lotashinski.ui.client.ProductClient;
@@ -32,9 +35,17 @@ public class FeignConfig {
 	}
 	
 	private Feign.Builder feignBuilder() {
+		ObjectMapper objectMapper = feignObjectMapper();
+		
 		return Feign.builder()
-				.encoder(new JacksonEncoder()) 
-				.decoder(new JacksonDecoder());
+				.encoder(new JacksonEncoder(objectMapper)) 
+				.decoder(new JacksonDecoder(objectMapper));
 	}
+	
+	private ObjectMapper feignObjectMapper() {
+        return new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
 	
 }
