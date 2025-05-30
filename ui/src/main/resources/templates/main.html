@@ -40,10 +40,13 @@
 			<ul class="product-list">
 				<li th:each="product : ${products}">
 					<article class="product-list-item">
-						<h4 class="product-list-item_brand">
-							<a th:href="'/products/' + ${product.id}"
-								th:text="${product.title}">PRODUCT_TITLE</a>
-						</h4>
+						<div class="product-list-item_brand">
+							<h4>
+								<a th:href="'/products/' + ${product.id}"
+									th:text="${product.title}">PRODUCT_TITLE</a>
+							</h4>
+							<a th:href="'/products/' + ${product.id} + '/edit'">(edit)</a>
+						</div>
 						<img class="product-list-item_media" src="static/img/cat.png"
 							alt="Product image" />
 						<form class="product-list-item_description"
