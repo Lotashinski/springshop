@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
 
-public interface CategoriesService {
+public interface CategoryService {
 	
 	List<? extends CategoryCollectionItemDto> getAll();	
 }

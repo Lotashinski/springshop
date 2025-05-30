@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.lotashinski.ui.service.CartService;
-import com.github.lotashinski.ui.service.CategoriesService;
+import com.github.lotashinski.ui.service.CategoryService;
 import com.github.lotashinski.ui.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class IndexController {
 
-	private final CategoriesService categoryService;
+	private final CategoryService categoryService;
 	
 	private final ProductService productService;
 	
