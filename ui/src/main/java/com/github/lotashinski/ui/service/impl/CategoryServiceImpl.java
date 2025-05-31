@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.lotashinski.api.dto.CategoryCollectionItemDto;
 import com.github.lotashinski.api.dto.CategoryCriteriaDto;
+import com.github.lotashinski.api.dto.CategoryDataDto;
+import com.github.lotashinski.api.dto.CategoryDto;
 import com.github.lotashinski.ui.client.CategoriesClient;
 import com.github.lotashinski.ui.service.CategoryService;
 
@@ -24,6 +26,33 @@ public class CategoryServiceImpl implements CategoryService {
 		log.debug("Get all categories");
 		
 		return categories.findByCriteria(new CategoryCriteriaDto());
+	}
+
+	@Override
+	public CategoryDto getById(Long id) {
+		log.debug("Get category by id {}", id);
+		
+		return categories.getById(id);
+	}
+
+	@Override
+	public CategoryDto update(Long id, CategoryDataDto data) {
+		log.debug("Update category by id {} {}", id, data);
+		
+		return categories.update(id, data);
+	}
+
+	@Override
+	public CategoryDto create(CategoryDataDto data) {
+		log.debug("Create category {}", data);
+		
+		return categories.create(data);
+	}
+
+	@Override
+	public void delete(Long id) {
+		log.debug("Delete category {}", id);
+		categories.delete(id);		
 	}
 	
 }

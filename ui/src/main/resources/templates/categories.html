@@ -12,6 +12,7 @@
 		</section>
         <article class="content h100 grow bg-content"
 		  th:if="${! categories.isEmpty()}">
+		    <a href="/categories/create">Create new category</a>
 			<ul class="product-list">
 				<li th:each="category : ${categories}">
 					<article class="product-list-item">
