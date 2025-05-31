@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.lotashinski.api.dto.ProductCollectionItemDto;
 import com.github.lotashinski.api.dto.ProductCriteriaDto;
+import com.github.lotashinski.api.dto.ProductDataDto;
+import com.github.lotashinski.api.dto.ProductDto;
 import com.github.lotashinski.ui.client.ProductClient;
 import com.github.lotashinski.ui.service.ProductService;
 
@@ -22,10 +24,40 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public List<? extends ProductCollectionItemDto> getAll(Collection<? extends Long> categories) {
+		log.debug("Get products by categories {}", categories);
+		
 		ProductCriteriaDto criteria = new ProductCriteriaDto();
 		criteria.setCategories(categories);
 		
 		return productClient.findByCriteria(criteria);
+	}
+
+	@Override
+	public ProductDto getById(Long id) {
+		log.debug("Get product by id {}", id);
+		
+		return null;
+	}
+
+	@Override
+	public ProductDto update(Long id, ProductDataDto data) {
+		log.debug("Update product by id {} {}", id, data);
+		
+		return productClient.update(id, data);
+	}
+
+	@Override
+	public ProductDto create(ProductDataDto data) {
+		log.debug("Create product {}", data);
+		
+		return productClient.create(data);
+	}
+
+	@Override
+	public void delete(Long id) {
+		log.debug("Delete product {}", id);
+		
+		productClient.delete(id);
 	}
 
 }
