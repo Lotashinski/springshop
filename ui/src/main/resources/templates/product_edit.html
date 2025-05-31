@@ -12,15 +12,32 @@
             <h3 th:if="${product.id != null}">Update product</h3>
             <label for="product_title">Title</label> <br />
             <input type="text" name="title" id="product_title" required="required" th:value="${product.title}">
+            
+            <label for="product_cost">Cost</label> <br />
+            <input type="text" name="cost" id="product_cost" required="required" th:value="${product.cost}">
+            
+            <h4>Categories</h4>
+            <ul class="product-list">
+                <li th:each="category : ${categories}">
+                    <input type="checkbox" 
+                        th:id="'cat-' + ${category.id}" 
+                        name="categories" 
+                        th:value="${category.id}" 
+                        th:checked="${product.categories.contains(category)}"
+                    />
+                    <label th:for="'cat-' + ${category.id}" th:text="${category.title}">CATEGORY_TITLE</label>
+                </li>
+            </ul>
+            
             <input th:if="${product.id != null}" type="submit"
                             class="button" value="Update" /> 
             <input th:if="${product.id == null}" type="submit"
                             class="button" value="Create" /> 
         </form>
         <form class="content h100 grow bg-content"
-            th:method="delete" th:if="${category.id != null}"
-            th:action="'/categories/' + ${category.id} + '/delete'">
-            <h3>Delete category</h3>
+            th:method="delete" th:if="${product.id != null}"
+            th:action="'/products/' + ${product.id} + '/delete'">
+            <h3>Delete product</h3>
             <p>
                 Irreversible operation.
             </p>

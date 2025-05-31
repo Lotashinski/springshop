@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
 	public ProductDto getById(Long id) {
 		log.debug("Get product by id {}", id);
 		
-		return null;
+		return productClient.getById(id);
 	}
 
 	@Override
