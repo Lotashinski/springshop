@@ -80,6 +80,9 @@ public class CategoryServiceImpl implements CategoryService {
 		log.info("Delete category by id [id: {}]", id);
 		
 		Category entity = getEntityOrThrow(id);
+		entity.getProducts()
+			.forEach(p -> p.getCategories().remove(entity));
+		
 		categoryRepository.delete(entity);
 	}
 
