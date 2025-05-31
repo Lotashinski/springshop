@@ -7,15 +7,15 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.lotashinski.api.dto.ProductCollectionItemDto;
+import com.github.lotashinski.api.dto.ProductCriteriaDto;
+import com.github.lotashinski.api.dto.ProductDataDto;
+import com.github.lotashinski.api.dto.ProductDto;
 import com.github.lotashinski.api.entity.Product;
 import com.github.lotashinski.api.mapper.ProductMapper;
 import com.github.lotashinski.api.repository.ProductRepository;
 import com.github.lotashinski.api.repository.specification.ProductSpecification;
 import com.github.lotashinski.api.service.ProductService;
-import com.github.lotashinski.api.dto.ProductCollectionItemDto;
-import com.github.lotashinski.api.dto.ProductCriteriaDto;
-import com.github.lotashinski.api.dto.ProductDataDto;
-import com.github.lotashinski.api.dto.ProductDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +34,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<? extends ProductCollectionItemDto> findByCriteria(ProductCriteriaDto criteria) {
 		log.info("Load products by criteria [criteria: {}]", criteria);
 		
-		Specification<Product> spec = ProductSpecification.hasIdentifiersIn(criteria.getIds())
+		Specification<Product> spec = ProductSpecification
+				.isNotDeleted()
+				.and(ProductSpecification.hasIdentifiersIn(criteria.getIds()))
 				.and(ProductSpecification.hasExistsInCategory(criteria.getCategory()))
 				.and(ProductSpecification.hasExistsInCategories(criteria.getCategories()));
+		
 		List<Product> entities = productRepository.findAll(spec, Sort.by("title"));
 		
 		return productMapper.toItemDtoList(entities);
@@ -74,14 +77,14 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productMapper.toDto(entity);
 	}
-
+	 
 	@Transactional
 	@Override
 	public void delete(Long id) {
 		log.info("Delete product by id [id: {}]", id);
 		
 		Product entity = getEntityOrThrow(id);
-		productRepository.delete(entity);
+		entity.setIsDeleted(true);
 	}
 	
 	private Product getEntityOrThrow(Long id) {

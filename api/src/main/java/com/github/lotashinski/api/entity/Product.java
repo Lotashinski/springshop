@@ -45,6 +45,9 @@ public class Product {
 	@Setter(AccessLevel.PROTECTED)
 	private Set<Category> categories = new HashSet<>();
 
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
+	
 	public void addCategory(Category category) {
 		if (categories.contains(category)) return;
 		

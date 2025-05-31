@@ -14,6 +14,12 @@ import jakarta.persistence.criteria.Subquery;
 
 public class ProductSpecification {
 
+	public static Specification<Product> isNotDeleted() {
+		return (root, query, criteriaBuilder) -> 
+			criteriaBuilder.or(criteriaBuilder.isNull(root.get("isDeleted")), 
+					criteriaBuilder.not(criteriaBuilder.isTrue(root.get("isDeleted"))));
+	}
+	
 	public static Specification<Product> hasIdentifiersIn(Collection<? extends Long> ids) {
 		return (root, query, criteriaBuilder) -> {
 			if(ids == null || ids.isEmpty()) return criteriaBuilder.conjunction();
