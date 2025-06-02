@@ -122,7 +122,7 @@ class CategoryServiceImplTest {
     	
     	Mockito.when(categoryRepository.findById(Mockito.anyLong()))
     		.thenReturn(Optional.of(category));
-    	Mockito.when(categoryMapper.toDto(category))
+    	Mockito.when(categoryMapper.toDto(Mockito.any(Category.class)))
     		.thenReturn(dto);
     	
     	CategoryDto result = categoryService.read(identifier);

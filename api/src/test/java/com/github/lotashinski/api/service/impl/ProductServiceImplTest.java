@@ -121,7 +121,7 @@ class ProductServiceImplTest {
     	
     	Mockito.when(productRepository.findById(Mockito.anyLong()))
     		.thenReturn(Optional.of(product));
-    	Mockito.when(productMapper.toDto(product))
+    	Mockito.when(productMapper.toDto(Mockito.any(Product.class)))
     		.thenReturn(dto);
     	
     	ProductDto result = productService.read(identifier);

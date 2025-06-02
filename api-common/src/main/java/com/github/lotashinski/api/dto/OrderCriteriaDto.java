@@ -8,5 +8,7 @@ import lombok.Data;
 public class OrderCriteriaDto implements Serializable {
 	
 	private static final long serialVersionUID = 4369623311623826746L;
-
+	
+	private Boolean isFinished;
+	
 }

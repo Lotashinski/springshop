@@ -3,17 +3,19 @@ package com.github.lotashinski.api.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.lotashinski.api.entity.Order;
-import com.github.lotashinski.api.mapper.OrderMapper;
-import com.github.lotashinski.api.repository.OrderRepository;
-import com.github.lotashinski.api.service.OrderService;
 import com.github.lotashinski.api.dto.OrderCollectionItemDto;
 import com.github.lotashinski.api.dto.OrderCriteriaDto;
 import com.github.lotashinski.api.dto.OrderDataDto;
 import com.github.lotashinski.api.dto.OrderDto;
+import com.github.lotashinski.api.entity.Order;
+import com.github.lotashinski.api.mapper.OrderMapper;
+import com.github.lotashinski.api.repository.OrderRepository;
+import com.github.lotashinski.api.repository.specification.OrderSpecification;
+import com.github.lotashinski.api.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +34,11 @@ public class OrderServiceImpl implements OrderService {
 	public List<? extends OrderCollectionItemDto> findByCriteria(OrderCriteriaDto criteria) {
 		log.info("Load orderss by criteria [criteria: {}]", criteria);
 		
-		// TODO change to query
-		List<Order> entities = orderRepository.findAll(Sort.by("createdAt").descending());
+		Specification<Order> specification = OrderSpecification
+				.isFinished(criteria.getIsFinished()); 
+		
+		List<Order> entities = orderRepository
+				.findAll(specification, Sort.by("createdAt").descending());
 
 		return orderMapper.toItemDtoList(entities);
 	}
