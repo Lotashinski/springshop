@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+    <header th:replace="~{ main.html :: header }"></header>
+
+    <main class="container">
+        <article class="content h100 grow bg-content">
+            
+            <h3>Error: <span th:text="${code}">ERROR_CODE</span></h3>
+            
+        </article>
+    </main>
+
+    <footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>
