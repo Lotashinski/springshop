@@ -10,17 +10,8 @@ import com.github.lotashinski.api.exceptions.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class ExceprionControllerAdvice {
-
-	private static final String INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR";
 	
 	private static final String RESOURCE_NOT_FOUND = "RESOURCE_NOT_FOUND";
-	
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorDto> handleException(Exception ex) {
-        ErrorDto error = new ErrorDto(INTERNAL_SERVER_ERROR, "internal server error", null);
-        
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
-    }
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ErrorDto> handleNotFoundException(ResourceNotFoundException ex) {
