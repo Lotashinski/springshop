@@ -52,7 +52,7 @@ main {
     flex-direction: column;
     padding: var(--padding);
     border-radius: var(--border-radius-main);
-    min-width: 250px;
+    
     gap: var(--padding);
 }
 
@@ -122,6 +122,7 @@ footer>.content {
 .product-list {
     list-style-type: none;
     padding: 0;
+    min-width:200px;
 }
 
 .product-list {
@@ -169,4 +170,10 @@ footer>.content {
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.line-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--padding);
 }

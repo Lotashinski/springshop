@@ -25,6 +25,7 @@ public interface ProductMapper {
 	List<ProductCollectionItemDto> toItemDtoList(List<? extends Product> entities);
 	
 	@Mapping(target = "categories", ignore = true)
+	@Mapping(target = "isDeleted", ignore = true)
 	Product toEntity(ProductDataDto dto, @MappingTarget Product entity);
 	
 }
