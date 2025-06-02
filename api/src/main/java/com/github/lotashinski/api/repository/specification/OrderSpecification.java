@@ -10,7 +10,10 @@ public class OrderSpecification {
 		return (root, query, criteriaBuilder) -> {
 			if (isFinished == null) return criteriaBuilder.conjunction();
 			
-			return criteriaBuilder.isTrue(root.get("isFinished"));
+			return isFinished 
+					? criteriaBuilder.isTrue(root.get("isFinished")) 
+					: criteriaBuilder.or(criteriaBuilder.isFalse(root.get("isFinished")), 
+							criteriaBuilder.isNull(root.get("isFinished")));
 		};
 	}
 	
