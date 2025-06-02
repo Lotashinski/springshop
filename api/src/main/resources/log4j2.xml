@@ -11,9 +11,9 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="ALL">
+        <Root level="INFO">
             <AppenderRef ref="CONSOLE" level="ERROR" />
-            <AppenderRef ref="MAIN" level="ALL" />
+            <AppenderRef ref="MAIN" level="INFO" />
         </Root>
     </Loggers>
 </Configuration>
