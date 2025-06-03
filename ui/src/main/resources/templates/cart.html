@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+	<header th:replace="~{ main.html :: header }"></header>
+
+	<main class="container">
+		<section class="content bg-content grow" th:if="${products.isEmpty()}">
+			<p>It's empty here for now! You can return to the store and
+				select the products you are interested in.</p>
+		</section>
+        <form action="/orders" method="post" 
+		  class="content h100 grow bg-content"
+		  th:if="${! products.isEmpty()}">
+			<ul class="product-list">
+				<li th:each="product : ${products}">
+					<article class="product-list-item">
+						<h4 class="product-list-item_brand">
+							<a th:href="'/products/' + ${product.id}"
+								th:text="${product.title}">PRODUCT_TITLE</a>
+						</h4>
+						<img class="product-list-item_media" src="static/img/cat.png"
+							alt="Product image" />
+						<div class="column">
+							<span class="product-list-item_description_cost"
+								th:text="${product.cost} + ' BYN'">COST</span>
+							<input type="number" th:name="|products[${product.id}]|" value="1" min="0"/>
+						</div>
+					</article>
+				</li>
+			</ul>
+			
+			<label for="customerName">Customer name</label>
+			<input id="customerName" type="text" name="customerName" required="required" />
+			
+			<label for="address">Address</label>
+			<input id="address" type="text" name="address" required="required" />
+
+			<input type="submit"
+                class="button" value="Create order" /> 
+		</form>
+	</main>
+
+	<footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>

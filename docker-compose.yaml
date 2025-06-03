@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE:-app}
+      POSTGRES_USER: ${POSTGRES_USER:?error}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
+    networks:
+    - internal
+    ports:
+    - "5432:5432"
+    volumes:
+    - ./volumes/postgres:/var/lib/postgresql/data
+
+  api:    
+    build: ./api
+    container_name: api-service
+    networks:
+    - internal
+    depends_on:
+    - postgres
+    environment:
+      SERVER_PORT: 8080
+      POSTGRES_HOST: postgres
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE:-app}
+      POSTGRES_USER: ${POSTGRES_USER:?error}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?error}
+    volumes:
+    - ./volumes/api:/app/logs
+
+  ui:
+    build: ./ui
+    container_name: ui-service
+    networks:
+    - internal
+    depends_on:
+    - postgres
+    - api
+    environment:
+      API_HOST: http://api:8080
+    volumes:
+    - ./volumes/api:/app/logs
+
+  nginx:
+    image: nginx:1.28-alpine
+    container_name: nginx
+    networks:
+    - internal
+    volumes:
+    - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+    - ./volumes/nginx:/var/log/nginx:rw
+    ports:
+    - "8080:80"
+
+networks:
+  internal:
+    driver: bridge

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+    <header th:replace="~{ main.html :: header }"></header>
+
+    <main class="container">
+        <form class="content h100 grow bg-content" method="post">
+            <h3 th:if="${category.id == null}">Create new category</h3>
+            <h3 th:if="${category.id != null}">Update category</h3>
+            <label for="category_title">Title</label> <br />
+            <input type="text" name="title" id="category_title" required="required" th:value="${category.title}">
+            <input th:if="${category.id != null}" type="submit"
+                            class="button" value="Update" /> 
+            <input th:if="${category.id == null}" type="submit"
+                            class="button" value="Create" /> 
+        </form>
+        <form class="content h100 grow bg-content"
+            th:method="delete" th:if="${category.id != null}"
+            th:action="'/categories/' + ${category.id} + '/delete'">
+            <h3>Delete category</h3>
+            <p>
+                Irreversible operation. All related products will be kept but will lose their category
+            </p>
+            <input type="submit" class="button button-cancel" value="Delete">
+        </form>
+    </main>
+
+    <footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>
