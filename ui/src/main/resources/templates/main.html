@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/style/styles.css">
+<title>Springshop</title>
+<script type="text/javascript" src="/static/js/index.js" defer></script>
+</head>
+
+<body>
+	<header th:fragment="header" class="container">
+		<section class="header content bg-base-master">
+			<h1 class="m0">Springshop</h1>
+			<nav class="nav">
+				<a href="/">Products</a> <a href="/categories">Categories</a>
+				<a href="/cart">Cart</a>
+				<a href="/orders">Order</a>
+			</nav>
+		</section>
+	</header>
+
+	<main class="container">
+		<aside class="content h100 bg-content">
+			<h4>Categories:</h4>
+			<form>
+				<ul class="select-list">
+					<li th:each="category : ${categories}"><input
+						th:id="'category-' + ${category.id}" type="checkbox"
+						name="categories" th:value="${category.id}"
+						th:checked="${selected.contains(category.id)}" /> <label
+						th:for="'category-' + ${category.id}" th:text="${category.title}">CATEGORY</label>
+					</li>
+				</ul>
+				<input type="submit" class="button w100" value="Set" />
+			</form>
+		</aside>
+		<article class="content h100 grow bg-content">
+		    <a href="/products/create">New product</a>
+			<ul class="product-list">
+				<li th:each="product : ${products}">
+					<article class="product-list-item">
+						<div class="product-list-item_brand">
+							<h4>
+								<a th:href="'/products/' + ${product.id}"
+									th:text="${product.title}">PRODUCT_TITLE</a>
+							</h4>
+							<a th:href="'/products/' + ${product.id} + '/edit'">(edit)</a>
+						</div>
+						<img class="product-list-item_media" src="static/img/cat.png"
+							alt="Product image" />
+						<form class="product-list-item_description"
+							th:action="@{${'/' + product.id + queryString}}" method="post"
+							action="">
+						<span class="product-list-item_description_cost"
+							th:text="${product.cost} + ' BYN'">COST</span> 
+						<input th:if="${ ! cart.contains(product.id) }" type="submit"
+							class="button" value="Add to cart" /> 
+						<a th:if="${ cart.contains(product.id) }" href="/cart"
+							class="button">Already in you cart</a>
+						</form>
+					</article>
+				</li>
+			</ul>
+		</article>
+	</main>
+
+	<footer th:fragment="footer" class="container">
+		<section class="content bg-alta-master">
+			<p class="m0">
+				<a href="https://github.com/Lotashinski/springshop">github repo</a>
+			</p>
+		</section>
+	</footer>
+</body>
+
+</html>

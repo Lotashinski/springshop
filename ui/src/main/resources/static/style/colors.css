@@ -1,0 +1,70 @@
+:root {
+    --color-base-master: #FF9900;
+    --color-base-var1: #996633;
+    --color-base-var2: #663300;
+    --color-base-var3: #FFCC66;
+    --color-base-var4: #FFCC99;
+    
+    --color-alta-master: #FFCC99;
+    --color-alta-var1: #999933;
+    --color-alta-var2: #666600;
+    --color-alta-var3: #FFFF66;
+    --color-alta-var4: #FFFF99;
+    
+    --color-altb-master: #CC0066;
+    --color-altb-var1: #663366;
+    --color-altb-var2: #660033;
+    --color-altb-var3: #FF6699;
+    --color-altb-var4: #FF99CC;
+
+    --color-shadow: #f1f1f1;
+    --color-content-bg: #ffffff;
+}
+
+.bg-shadow {
+    background: var(--color-shadow);
+}
+
+.bg-content {
+    background: var(--color-content-bg);
+}
+
+.bg-base-master {
+    background: var(--color-base-master);
+}
+
+.bg-base-var1 {
+    background: var(--color-base-var1);
+}
+
+.bg-base-var2 {
+    background: var(--color-base-var2);
+}
+
+.bg-base-var3 {
+    background: var(--color-base-var3);
+}
+
+.bg-base-var4 {
+    background: var(--color-base-var4);
+}
+
+.bg-alta-master {
+    background: var(--color-alta-master);
+}
+
+.bg-alta-var1 {
+    background: var(--color-alta-var1);
+}
+
+.bg-alta-var2 {
+    background: var(--color-alta-var2);
+}
+
+.bg-alta-var3 {
+    background: var(--color-alta-var3);
+}
+
+.bg-alta-var4 {
+    background: var(--color-alta-var4);
+}

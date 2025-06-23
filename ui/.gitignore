@@ -94,6 +94,8 @@ nb-configuration.xml
 ## Local envs
 .env
 
+## Local logs
+logs/
 
-## Docker volumes
-volumes
+## Local docker data
+volumes/

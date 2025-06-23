@@ -1,0 +1,179 @@
+@import url(normalize.css);
+@import url(colors.css);
+@import url(fonts/stylesheet.css);
+
+:root {
+    --default-width: min(1400px, 100vw);
+    --padding: 15px;
+    --border-radius-main: 20px;
+    --border-radius-container: 5px;
+    background: var(--color-shadow);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: absolute;
+}
+
+main {
+    padding: var(--padding) 0 var(--padding) 0;
+    flex-grow: 1;
+    display: flex;
+    gap: var(--padding);
+    position: relative;
+}
+
+.container {
+    width: 100vw;
+    padding-inline: max(calc((100vw - var(--default-width)) / 2), var(--padding));
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: var(--padding);
+    border-radius: var(--border-radius-main);
+    
+    gap: var(--padding);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.header > nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--padding);
+}
+
+header>.content {
+    border-radius: 0 0 var(--border-radius-main) var(--border-radius-main);
+}
+
+footer>.content {
+    border-radius: var(--border-radius-main) var(--border-radius-main) 0 0;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.m0 {
+    margin: 0;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.button {
+    background-color: var(--color-t6);
+    border-radius: var(--border-radius-container);
+    display: inline-block;
+    cursor: pointer;
+    border: var(--color-alta-var2) solid 2px;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 200ms ease;
+    color: var(--color-m1);
+    align-self: flex-start;
+}
+
+.button:hover {
+    background-color: var(--color-alta-var2);
+    color: var(--color-content-bg);
+}
+
+.select-list,
+.product-list {
+    list-style-type: none;
+    padding: 0;
+    min-width:200px;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+}
+
+.product-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--padding);
+}
+
+.product-list-item_brand {
+    width: 100%;
+}
+
+.product-list-item_media {
+    width: calc(min(150px, 40%));
+    border-radius: var(--border-radius-container);
+}
+
+.product-list-item_description {
+    width: calc(100% - min(150px, 40%) - var(--padding));
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+}
+
+.product-list-item_description_cost {
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.nav a {
+	color: black;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.line-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--padding);
+}

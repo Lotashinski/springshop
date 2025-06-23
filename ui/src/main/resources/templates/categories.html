@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{ main.html :: head }"></head>
+
+<body>
+	<header th:replace="~{ main.html :: header }"></header>
+
+	<main class="container">
+		<section class="content bg-content grow" th:if="${categories.isEmpty()}">
+			<p>It's empty here for now!</p>
+		</section>
+        <article class="content h100 grow bg-content"
+		  th:if="${! categories.isEmpty()}">
+		    <a href="/categories/create">Create new category</a>
+			<ul class="product-list">
+				<li th:each="category : ${categories}">
+					<article class="product-list-item">
+						<h4 class="product-list-item_brand">
+							<a th:href="'/?categories=' + ${category.id}"
+								th:text="${category.title}">CATEGORY_TITLE</a>
+							<a th:href="'/categories/' + ${category.id}">(edit)</a>
+						</h4>
+					</article>
+				</li>
+			</ul>
+		</article>
+	</main>
+
+	<footer th:replace="~{ main.html :: footer }"></footer>
+
+</body>
+
+</html>
